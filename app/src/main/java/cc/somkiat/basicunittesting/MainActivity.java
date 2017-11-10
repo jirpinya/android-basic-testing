@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSaveClick(View view) {
         //TODO
+        NameValidation nameValidation = new NameValidation();
     }
 
     public void onRevertClick(View view) {

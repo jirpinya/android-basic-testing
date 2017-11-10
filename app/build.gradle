@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'jacoco'
+apply plugin: 'jacoco' //apply jacoco
 
 android {
     compileSdkVersion 26
@@ -13,6 +13,7 @@ android {
     }
     buildTypes {
 
+        //-- เปิดการบันทึกผล Coverage --//
         debug {
             testCoverageEnabled true
         }
@@ -24,6 +25,7 @@ android {
     }
 }
 
+//---- ประกาศ jacoco version ----//
 jacoco {
     toolVersion = "0.7.4+"
 }
@@ -39,6 +41,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
 
+//---- เพื่อสร้าง Full Coverage ----//
 task fullCoverageReport(type: JacocoReport) {
     dependsOn 'createDebugCoverageReport'
     dependsOn 'testDebugUnitTest'
@@ -47,6 +50,7 @@ task fullCoverageReport(type: JacocoReport) {
         html.enabled = true
     }
 
+    //ส่วนที่ไม่เอา
     def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
                       '**/*Test*.*', 'android/**/*.*',
                       '**/*_MembersInjector.class',
