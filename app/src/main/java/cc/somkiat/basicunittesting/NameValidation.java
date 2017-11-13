@@ -19,6 +19,15 @@ class NameValidation {
         else if (isContainNumber(name)  == true) {
             resultMessage = "Name contain number";
         }
+        else if (isContainSpace(name)  == true) {
+            resultMessage = "Name contain space";
+        }
+        else if (isLessThanFive(name)  == true) {
+            resultMessage = "Name is less than 5";
+        }
+        else if (isMoreThanTwenty(name)  == true) {
+            resultMessage = "Name is more than 20";
+        }
         return true;
     }
 
@@ -45,6 +54,29 @@ class NameValidation {
 
     public boolean isContainNumber(String name) {
         if (name.matches(".*\\d+.*")){
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean isContainSpace(String name){
+        if (name.contains(" ")){
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean isLessThanFive(String name){
+        if(name.length() < 5) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMoreThanTwenty(String name){
+        if(name.length() > 20) {
             return true;
         }
         return false;

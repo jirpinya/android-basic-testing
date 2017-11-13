@@ -25,14 +25,35 @@ public class NameValidationFailTest {
     public void NameHaveSpecialsAlphabet(){
         NameValidation validation = new NameValidation();
         boolean result = validation.isAlphabet("@>N.S<@");
-        assertFalse("Fail!!! Name have alphabet.", result);
+        assertFalse("Fail!!! Name have specials alphabet.", result);
+    }
+
+    @Test
+    public void NameContainSpace(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.isContainSpace("sai jirapinya");
+        assertTrue("Fail!!! Name contain space", result);
     }
 
     @Test
     public void NameContainNumber(){
         NameValidation validation = new NameValidation();
         boolean result = validation.isContainNumber("12123saii12121");
-        assertTrue("Fail!!! Name have number.", result);
+        assertTrue("Fail!!! Name contain number.", result);
+    }
+
+    @Test
+    public void NameisLessThanFive(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.isLessThanFive("Hii");
+        assertTrue("Fail!!! Name is less than 5", result);
+    }
+
+    @Test
+    public void NameIsMoreThanTwenty(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.isMoreThanTwenty("abcdefghijklmnopqrstwvxyz");
+        assertTrue("Fail!!! Name is more than 20", result);
     }
 
 
