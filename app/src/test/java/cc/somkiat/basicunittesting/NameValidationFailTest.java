@@ -43,7 +43,7 @@ public class NameValidationFailTest {
     }
 
     @Test
-    public void NameisLessThanFive(){
+    public void NameIsLessThanFive(){
         NameValidation validation = new NameValidation();
         boolean result = validation.isLessThanFive("Hii");
         assertTrue("Fail!!! Name is less than 5", result);

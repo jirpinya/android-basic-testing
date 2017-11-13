@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         email = emailInput.getText().toString();
 
         NameValidation nameValidation = new NameValidation();
-        //EmailValidation emailValidation = new EmailValidation();
+        EmailValidation emailValidation = new EmailValidation();
 
         if (!nameValidation.validate(name)) {
             Toast.makeText(this, "NameValidationFailTest!", Toast.LENGTH_SHORT).show();

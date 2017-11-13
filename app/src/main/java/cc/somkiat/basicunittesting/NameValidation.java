@@ -4,9 +4,10 @@ import java.util.regex.Pattern;
 
 class NameValidation {
 
-    private String resultMessage = "Name Validation Success";
+    private String resultMessage = "Success";
 
     public boolean validate (String name){
+
         if (isEmpty(name) == true){
             resultMessage = "Name is empty";
         }
