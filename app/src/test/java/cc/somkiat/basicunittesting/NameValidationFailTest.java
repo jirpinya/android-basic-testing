@@ -7,10 +7,17 @@ import static junit.framework.Assert.assertFalse;
 public class NameValidationFailTest {
 
     @Test
-    public void ชื่อเป็นค่าว่าง(){
+    public void NameIsEmpty(){
             NameValidation validation = new NameValidation();
-            boolean result = validation.isEmpty("");
-            assertFalse("ต้องไม่ผ่าน เพราะค่ามันว่าง !!! ", result);
+            boolean result = validation.nameIsEmpty("");
+            assertFalse("Fail!!! Name is empty.", result);
+    }
+
+    @Test
+    public void NameIsNull(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.nameIsNull(null);
+        assertFalse("Fail!!! Name is null.", result);
     }
 
 }
