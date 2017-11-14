@@ -4,82 +4,83 @@ import java.util.regex.Pattern;
 
 class NameValidation {
 
-    private String resultMessage = "Success";
+    private String status = "validate";
+    private String message = "Success";
 
-    public boolean validate (String name){
-
-        if (isEmpty(name) == true){
-            resultMessage = "Name is empty";
-        }
-        else if (isNull(name) == true){
-            resultMessage = "Name is null";
-        }
-        else if (isAlphabet(name) == true){
-            resultMessage = "Name is alphabet";
-        }
-        else if (isContainNumber(name)  == true) {
-            resultMessage = "Name contain number";
-        }
-        else if (isContainSpace(name)  == true) {
-            resultMessage = "Name contain space";
-        }
-        else if (isLessThanFive(name)  == true) {
-            resultMessage = "Name is less than 5";
-        }
-        else if (isMoreThanTwenty(name)  == true) {
-            resultMessage = "Name is more than 20";
-        }
-        return true;
+    public String validate (String name) throws NameException {
+        isEmpty(name);
+        isNull(name);
+        isSpecialsAlphabet(name);
+        isContainNumber(name);
+        isContainSpace(name);
+        isLessThanFive(name);
+        isMoreThanTwenty(name);
+        return status;
     }
 
-    public boolean isEmpty(String name) {
+    public String getStatus(){
+        return status;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void isEmpty(String name) throws NameException{
         if(name.isEmpty()){
-            return true;
+            status = "invalidate";
+            message = "Name is empty";
+            throw new NameException(message);
         }
-        return false;
     }
 
-    public boolean isNull(String name) {
+    public void isNull(String name) throws NameException{
         if(name == null){
-            return true;
+            status = "invalidate";
+            message = "Name is null";
+            throw new NameException(message);
         }
-        return false;
     }
 
-    public boolean isAlphabet(String name) {
-        if(Pattern.matches("[a-zA-Z]+", name)){
-            return true;
+    public void isSpecialsAlphabet(String name) throws NameException{
+        if(!Pattern.matches("[a-zA-Z]+", name)){
+            status = "invalidate";
+            message = "Name is specials alphabet";
+            throw new NameException(message);
         }
-        return false;
     }
 
-    public boolean isContainNumber(String name) {
+    public void isContainNumber(String name) throws NameException{
         if (name.matches(".*\\d+.*")){
-            return true;
+            status = "invalidate";
+            message = "Name contain number";
+            throw new NameException(message);
         }
-        return false;
     }
 
 
-    public boolean isContainSpace(String name){
+    public void isContainSpace(String name) throws NameException{
         if (name.contains(" ")){
-            return true;
+            status = "invalidate";
+            message = "Name contain space";
+            throw new NameException(message);
         }
-        return false;
     }
 
 
-    public boolean isLessThanFive(String name){
+    public void isLessThanFive(String name) throws NameException{
         if(name.length() < 5) {
-            return true;
+            status = "invalidate";
+            message = "Name is less than 5";
+            throw new NameException(message);
         }
-        return false;
     }
 
-    public boolean isMoreThanTwenty(String name){
+    public void isMoreThanTwenty(String name) throws NameException{
         if(name.length() > 20) {
-            return true;
+            status = "invalidate";
+            message = "Name is more than 20";
+            throw new NameException(message);
         }
-        return false;
     }
 }

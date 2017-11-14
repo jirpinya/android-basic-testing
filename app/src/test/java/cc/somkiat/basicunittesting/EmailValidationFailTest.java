@@ -7,23 +7,28 @@ import static junit.framework.Assert.assertTrue;
 
 public class EmailValidationFailTest {
 
-    @Test
-    public void EmailIsEmpty(){
+    private String status = "invalidate";
+
+    @Test(expected = EmailException.class)
+    public void EmailIsEmpty() throws EmailException{
         EmailValidation validation = new EmailValidation();
-        boolean result = validation.isEmpty("");
-        assertTrue("Fail!!! Email is empty.", result);
+        validation.isEmpty("");
+        String result = validation.getStatus();
+        assertTrue("Fail!!! Email is empty.", status.equals(result));
     }
-    @Test
-    public void EmailIsNull(){
+    @Test(expected = EmailException.class)
+    public void EmailIsNull() throws EmailException {
         EmailValidation validation = new EmailValidation();
-        boolean result = validation.isNull(null);
-        assertTrue("Fail!!! Email is null.", result);
+        validation.isNull(null);
+        String result = validation.getStatus();
+        assertTrue("Fail!!! Email is null.", status.equals(result));
     }
 
-    @Test
-    public void EmailIsNotValidation(){
+    @Test(expected = EmailException.class)
+    public void EmailIsNotValidation() throws EmailException {
         EmailValidation validation = new EmailValidation();
-        boolean result = validation.isNull("%%3jir__*()@gmail.com");
-        assertFalse("Fail!!! Email is not validation.", result);
+        validation.emailIsNotPattern("%%@gmail.com");
+        String result = validation.getStatus();
+        assertTrue("Fail!!! Email is not pattern.", status.equals(result));
     }
 }

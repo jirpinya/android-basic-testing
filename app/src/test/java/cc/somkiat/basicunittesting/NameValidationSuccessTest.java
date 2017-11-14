@@ -1,14 +1,17 @@
 package cc.somkiat.basicunittesting;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
+import static junit.framework.Assert.assertTrue;
+
 public class NameValidationSuccessTest {
+
+    private String status = "validate";
+
     @Test
-    public void normalName() {
+    public void normalName() throws NameException {
         NameValidation validation = new NameValidation();
-        boolean result = validation.validate("JIRAPINYA");
-        Assert.assertTrue(result);
+        String result = validation.validate("JIRAPINYA");
+        assertTrue("Success name validate!!", status.equals(result));
     }
 }

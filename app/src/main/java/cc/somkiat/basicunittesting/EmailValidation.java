@@ -1,46 +1,52 @@
 package cc.somkiat.basicunittesting;
 
-
-import android.util.Patterns;
-
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class EmailValidation {
 
-    private String resultMessage = "Success";
+    private String status = "validate";
+    private String message = "Success";
 
-    public boolean validate (String name){
-
-        if (isEmpty(name) == true){
-            resultMessage = "Email is empty";
-        }
-        else if (isNull(name) == true){
-            resultMessage = "Email is null";
-        }
-        else if (isEmailPattern(name) == true){
-            resultMessage = "Email validation";
-        }
-        return true;
+    public String validate (String email) throws EmailException{
+        isEmpty(email);
+        isNull(email);
+        emailIsNotPattern(email);
+        return status;
     }
 
-    public boolean isEmpty(String email) {
+    public String getStatus(){
+        return status;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void isEmpty(String email) throws EmailException{
         if (email.isEmpty()) {
-            return true;
+            status = "invalidate";
+            message = "Email is empty";
+            throw new EmailException(message);
         }
-        return false;
     }
-    public boolean isNull(String email) {
+    public void isNull(String email) throws EmailException{
         if (email == null) {
-            return true;
+            status = "invalidate";
+            message = "Email is null";
+            throw new EmailException(message);
         }
-        return false;
     }
 
-    public boolean isEmailPattern(String email){
-        final Pattern pattern = Patterns.EMAIL_ADDRESS;
-        if (pattern.matcher(email).matches()) {
-            return true;
+    public void emailIsNotPattern(String email) throws EmailException{
+        String expression = "^[\\w\\.]+@([\\w]+\\.)+[A-Z]{2,7}$";
+        CharSequence inputString = email;
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputString);
+        if (!matcher.matches()){
+            status = "invalidate";
+            message = "Email is not pattern";
+            throw new EmailException(message);
         }
-        return false;
     }
 }
