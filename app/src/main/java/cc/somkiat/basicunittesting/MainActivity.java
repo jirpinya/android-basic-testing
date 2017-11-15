@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String name;
-    private String email;
     private EditText nameInput;
     private EditText emailInput;
-    private Button save;
-    private Button revert;
+    private String name, email;
+    private String resultNameValidation, resultEmailValidation;
+    private static final String VALIDATE_NAME = "Success name validate!!";
+    private static final String VALIDATE_EMAIL = "Success email validate!!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,25 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
     }
 
-    public void onSaveClick(View view) throws NameException, EmailException {
+    public void onSaveClick(View view){
 
         name = nameInput.getText().toString();
         email = emailInput.getText().toString();
 
         NameValidation nameValidation = new NameValidation();
-        EmailValidation emailValidation = new EmailValidation();
+        resultNameValidation = nameValidation.validate(name);
 
-        if (!nameValidation.validate(name).equals("validate")) {
-            Toast.makeText(this, "Name is invalid!!\n"+ nameValidation.getMessage(), Toast.LENGTH_SHORT).show();
+        EmailValidation emailValidation = new EmailValidation();
+        resultEmailValidation = emailValidation.validate(email);
+
+        if (!nameValidation.validate(name).equals(VALIDATE_NAME)) {
+            Toast.makeText(this,
+                    "Fail!!! "+ resultNameValidation, Toast.LENGTH_SHORT).show();
         }
-        else if (!emailValidation.validate(email).equals("validate")) {
-            Toast.makeText(this, "Email is invalid!!\n"+ emailValidation.getMessage(), Toast.LENGTH_SHORT).show();
+
+        else if (!emailValidation.validate(email).equals(VALIDATE_EMAIL)) {
+            Toast.makeText(this,
+                    "Fail!!! " + resultEmailValidation, Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(this, "Success!!",

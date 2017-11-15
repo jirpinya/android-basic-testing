@@ -6,61 +6,54 @@ import static junit.framework.Assert.assertTrue;
 
 public class NameValidationFailTest {
 
-    private String status = "invalidate";
+    private String message;
+    private String result;
 
-    @Test(expected = NameException.class)
-    public void NameIsEmpty() throws NameException {
-            NameValidation validation = new NameValidation();
-            validation.isEmpty("");
-            String result = validation.getStatus();
-            assertTrue("Fail!!! Name is empty.", status.equals(result));
+    @Test
+    public void NameIsNull() {
+        NameValidation validation = new NameValidation();
+        message = "Name is null.";
+        result = validation.validate(null);
+        assertTrue("Fail!!! "+message, message.equals(result));
     }
 
-    @Test(expected = NameException.class)
-    public void NameIsNull() throws NameException {
+    @Test
+    public void NameIsEmpty() {
         NameValidation validation = new NameValidation();
-        validation.isNull(null);
-        String result = validation.getStatus();
-        assertTrue("Fail!!! Name is null.", status.equals(result));
+        message = "Name is empty.";
+        result = validation.validate("");
+        assertTrue("Fail!!! "+message, message.equals(result));
     }
 
-    @Test(expected = NameException.class)
-    public void NameHaveSpecialsAlphabet() throws NameException {
+    @Test
+    public void NameHaveSpecialsAlphabet() {
         NameValidation validation = new NameValidation();
-        validation.isSpecialsAlphabet("@>N.S<@");
-        String result = validation.getStatus();
-        assertTrue("Fail!!! Name have specials alphabet.",status.equals(result));
+        message = "Name is specials alphabet.";
+        result = validation.validate("@>N.S<@");
+        assertTrue("Fail!!! "+message, message.equals(result));
     }
 
-    @Test(expected = NameException.class)
-    public void NameContainSpace() throws NameException {
+    @Test
+    public void NameContainNumber() {
         NameValidation validation = new NameValidation();
-        validation.isContainSpace("sai jirapinya");
-        String result = validation.getStatus();
-        assertTrue("Fail!!! Name contain space", status.equals(result));
+        message = "Name contain number.";
+        result = validation.validate("12123saii12121");
+        assertTrue("Fail!!! "+message, message.equals(result));
     }
 
-    @Test(expected = NameException.class)
-    public void NameContainNumber() throws NameException {
+    @Test
+    public void NameIsLessThanFive() {
         NameValidation validation = new NameValidation();
-        validation.isContainNumber("12123saii12121");
-        String result = validation.getStatus();
-        assertTrue("Fail!!! Name contain number.", status.equals(result));
+        message = "Name is less than 5.";
+        result = validation.validate("Hii");
+        assertTrue("Fail!!! "+message, message.equals(result));
     }
 
-    @Test(expected = NameException.class)
-    public void NameIsLessThanFive() throws NameException {
+    @Test
+    public void NameIsMoreThanTwenty() {
         NameValidation validation = new NameValidation();
-        validation.isLessThanFive("Hii");
-        String result = validation.getStatus();
-        assertTrue("Fail!!! Name is less than 5", status.equals(result));
-    }
-
-    @Test(expected = NameException.class)
-    public void NameIsMoreThanTwenty() throws NameException {
-        NameValidation validation = new NameValidation();
-        validation.isMoreThanTwenty("abcdefghijklmnopqrstwvxyz");
-        String result = validation.getStatus();
-        assertTrue("Fail!!! Name is more than 20", status.equals(result));
+        message = "Name is more than 20.";
+        result = validation.validate("abcdefghijklmnopqrstwvxyz");
+        assertTrue("Fail!!! "+message, message.equals(result));
     }
 }

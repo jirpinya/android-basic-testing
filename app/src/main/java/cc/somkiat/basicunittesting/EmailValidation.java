@@ -5,35 +5,30 @@ import java.util.regex.Pattern;
 
 class EmailValidation {
 
-    private String status = "validate";
-    private String message = "Success";
+    private String message = "Success email validate!!";
 
-    public String validate (String email) throws EmailException{
-        isEmpty(email);
-        isNull(email);
-        emailIsNotPattern(email);
-        return status;
-    }
-
-    public String getStatus(){
-        return status;
-    }
-
-    public String getMessage(){
+    public String validate (String email){
+        try {
+            isNull(email);
+            isEmpty(email);
+            emailIsNotPattern(email);
+        }
+        catch(Exception e) {
+            return message;
+        }
         return message;
+    }
+
+    public void isNull(String email) throws EmailException{
+        if (email == null) {
+            message = "Email is null.";
+            throw new EmailException(message);
+        }
     }
 
     public void isEmpty(String email) throws EmailException{
         if (email.isEmpty()) {
-            status = "invalidate";
-            message = "Email is empty";
-            throw new EmailException(message);
-        }
-    }
-    public void isNull(String email) throws EmailException{
-        if (email == null) {
-            status = "invalidate";
-            message = "Email is null";
+            message = "Email is empty.";
             throw new EmailException(message);
         }
     }
@@ -44,8 +39,7 @@ class EmailValidation {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(inputString);
         if (!matcher.matches()){
-            status = "invalidate";
-            message = "Email is not pattern";
+            message = "Email is not pattern.";
             throw new EmailException(message);
         }
     }

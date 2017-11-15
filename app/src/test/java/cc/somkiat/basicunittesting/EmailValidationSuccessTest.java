@@ -6,12 +6,12 @@ import static junit.framework.Assert.assertTrue;
 
 public class EmailValidationSuccessTest {
 
-    private String status = "validate";
+    private String message = "Success email validate!!";
 
     @Test
     public void normalEmail() throws EmailException{
         EmailValidation validation = new EmailValidation();
         String result = validation.validate("jirapinya@gmail.com");
-        assertTrue("Success email validate!!", status.equals(result));
+        assertTrue("Success email validate!!", message.equals(result));
     }
 }

@@ -6,12 +6,12 @@ import static junit.framework.Assert.assertTrue;
 
 public class NameValidationSuccessTest {
 
-    private String status = "validate";
+    private String message = "Success name validate!!";
 
     @Test
     public void normalName() throws NameException {
         NameValidation validation = new NameValidation();
         String result = validation.validate("JIRAPINYA");
-        assertTrue("Success name validate!!", status.equals(result));
+        assertTrue(message, message.equals(result));
     }
 }

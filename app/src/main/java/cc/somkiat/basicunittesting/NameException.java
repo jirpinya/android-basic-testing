@@ -1,13 +1,10 @@
 package cc.somkiat.basicunittesting;
 
-class NameException extends Exception
-{
-    private String message;
+class NameException extends Exception{
 
     public NameException(String message)
     {
-        this.message = message;
-        //super(message);
+        super(message);
     }
 
 }
