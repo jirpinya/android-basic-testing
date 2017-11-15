@@ -1,8 +1,10 @@
-package cc.somkiat.basicunittesting;
+package cc.somkiat.basicunittesting.Validation;
 
 import java.util.regex.Pattern;
 
-class NameValidation {
+import cc.somkiat.basicunittesting.Exception.NameException;
+
+public class NameValidation {
 
     private String message = "Success name validate!!";
 
@@ -21,7 +23,7 @@ class NameValidation {
         return message;
     }
 
-    public void isEmpty(String name) throws NameException{
+    public void isEmpty(String name) throws NameException {
         if(name.isEmpty()){
             message = "Name is empty.";
             throw new NameException(message);

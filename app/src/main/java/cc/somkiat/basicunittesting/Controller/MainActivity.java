@@ -1,12 +1,14 @@
-package cc.somkiat.basicunittesting;
+package cc.somkiat.basicunittesting.Controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import cc.somkiat.basicunittesting.R;
+import cc.somkiat.basicunittesting.Validation.EmailValidation;
+import cc.somkiat.basicunittesting.Validation.NameValidation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailInput;
     private String name, email;
     private String resultNameValidation, resultEmailValidation;
-    private static final String VALIDATE_NAME = "Success name validate!!";
-    private static final String VALIDATE_EMAIL = "Success email validate!!";
+    private static final String VALID_NAME = "Success name validate!!";
+    private static final String VALID_EMAIL = "Success email validate!!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         EmailValidation emailValidation = new EmailValidation();
         resultEmailValidation = emailValidation.validate(email);
 
-        if (!nameValidation.validate(name).equals(VALIDATE_NAME)) {
+        if (!nameValidation.validate(name).equals(VALID_NAME)) {
             Toast.makeText(this,
                     "Fail!!! "+ resultNameValidation, Toast.LENGTH_SHORT).show();
         }
 
-        else if (!emailValidation.validate(email).equals(VALIDATE_EMAIL)) {
+        else if (!emailValidation.validate(email).equals(VALID_EMAIL)) {
             Toast.makeText(this,
                     "Fail!!! " + resultEmailValidation, Toast.LENGTH_SHORT).show();
         }

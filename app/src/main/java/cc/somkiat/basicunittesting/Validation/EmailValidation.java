@@ -1,9 +1,11 @@
-package cc.somkiat.basicunittesting;
+package cc.somkiat.basicunittesting.Validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class EmailValidation {
+import cc.somkiat.basicunittesting.Exception.EmailException;
+
+public class EmailValidation {
 
     private String message = "Success email validate!!";
 
@@ -19,7 +21,7 @@ class EmailValidation {
         return message;
     }
 
-    public void isNull(String email) throws EmailException{
+    public void isNull(String email) throws EmailException {
         if (email == null) {
             message = "Email is null.";
             throw new EmailException(message);

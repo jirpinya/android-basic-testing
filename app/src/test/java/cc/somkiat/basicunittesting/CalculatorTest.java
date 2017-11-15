@@ -2,6 +2,8 @@ package cc.somkiat.basicunittesting;
 
 import org.junit.Test;
 
+import cc.somkiat.basicunittesting.Controller.Calculator;
+
 import static junit.framework.Assert.assertEquals;
 
 public class CalculatorTest {
